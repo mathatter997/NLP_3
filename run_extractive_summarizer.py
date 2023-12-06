@@ -23,9 +23,9 @@ with open(args.eval_data, 'r') as f:
     eval_data = json.load(f)
 
 
-eval_articles = [article['article'] for article in eval_data]
+eval_articles = [article['article'] for article in eval_data][0:1]
 preprocessed_eval_articles = model.preprocess(eval_articles)
 summaries = model.predict(preprocessed_eval_articles)
 eval_out_data = [{'article': article, 'summary': summary} for article, summary in zip(eval_articles, summaries)]
 
-print(json.dumps(eval_out_data, indent=4))
+
